@@ -29,7 +29,7 @@ public class ValidatorService {
             }
             lastNames[i] = StringUtils.capitalize((lastNames[i].toLowerCase()));
         }
-        return StringUtils.join("-", lastName);
+        return StringUtils.join("", lastName);
     }
 }
 

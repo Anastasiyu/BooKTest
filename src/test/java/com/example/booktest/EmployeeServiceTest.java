@@ -44,12 +44,15 @@ public class EmployeeServiceTest {
                 .isNotEmpty()
                 .hasSize(1)
                 .containsExactly(expected);
-
-        assertThat(employeeService.find(expected.getFirstName(), expected.getLastName(), expected.getDepartment(), expected.getSalary())).isEqualTo(expected);
+       assertThat(employeeService.find(expected.getFirstName(), expected.getLastName(), expected.getDepartment(), expected.getSalary())).isEqualTo(expected);
        // return expected;
     }
 
-   // @ParameterizedTest
+    private void containsExactly(Employee expected) {
+    }
+
+
+    // @ParameterizedTest
    // @MethodSource("addNegativeParams")
    // public void addNegativeTest(String firstName,
                   //              String lastName,

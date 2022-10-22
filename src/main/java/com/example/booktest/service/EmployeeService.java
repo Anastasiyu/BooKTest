@@ -14,7 +14,7 @@ import java.util.*;
 public class EmployeeService {
 
 
-        private static final int LIMIT = 20;
+        private static final int LIMIT = 10;
 
         private final Map<String, Employee> employees = new HashMap<>();
         private final ValidatorService validatorService;
