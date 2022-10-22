@@ -6,6 +6,7 @@ import com.example.booktest.exception.EmployeeStorageIsFullException;
 import com.example.booktest.model.Employee;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
 import java.util.*;
 
 
@@ -13,7 +14,7 @@ import java.util.*;
 public class EmployeeService {
 
 
-        private static final int LIMIT = 10;
+        private static final int LIMIT = 20;
 
         private final Map<String, Employee> employees = new HashMap<>();
         private final ValidatorService validatorService;
@@ -33,12 +34,12 @@ public class EmployeeService {
                             String lastName,
                             int department,
                             double salary) {
-            Employee employee = new Employee(
-                    validatorService.validateFirstName(firstName),
-                    validatorService.validateLastName(lastName),
-                    department,
-                    salary
-            );
+           Employee employee = new Employee(
+                   validatorService.validateFirstName(firstName),
+                   validatorService.validateLastName(lastName),
+                   department,
+                   salary
+           );
 
             String key = getKey(firstName, lastName);
 
@@ -46,7 +47,7 @@ public class EmployeeService {
                 throw new EmployeeAlredyAddedException();
             }
 
-            if (employees.size() >= LIMIT) {
+            if (employees.size() <= LIMIT) {
 
                 employees.put(key, employee);
                 return employee;
@@ -62,7 +63,7 @@ public class EmployeeService {
         throw new EmployeeNotFoundException();
     }
 
-    public Employee find(String firstName, String lastName,int department, double salary) {
+    public Employee find(String firstName, String lastName, int department, double salary) {
         Employee employee = new Employee(firstName, lastName, department, salary);;
         if (employees.containsKey(employee)) {
             return employee;
@@ -70,10 +71,11 @@ public class EmployeeService {
         throw new EmployeeNotFoundException();
     }
 
-    public List<Employee> getALL() {
-        return new ArrayList<>(employees.values());
+   public List<Employee> getALL() {return new ArrayList<>(employees.values());
+   }
+
+   // public Map<String, Employee> getALL() {
+     //   return new HashMap<>();
     }
 
-
-}
 

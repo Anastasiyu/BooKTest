@@ -22,6 +22,8 @@ public class Employee {
 
     }
 
+
+
     public int getDepartment() {
         return department;
     }
