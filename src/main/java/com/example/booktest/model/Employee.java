@@ -7,9 +7,9 @@ public class Employee {
     private final String firstName;
     private final String lastName;
 
-    private  final int department;
+    private   int department;
 
-    private  final double salary;
+    private   double salary;
 
 
 
@@ -21,6 +21,11 @@ public class Employee {
 
 
     }
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
 
 
 
@@ -58,4 +63,6 @@ public class Employee {
     public String toString() {
         return String.format("ФИ: %s %s", firstName, lastName, department, salary);
     }
+
+
 }

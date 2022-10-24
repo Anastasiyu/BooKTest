@@ -11,7 +11,6 @@ public class ValidatorService {
 
 
 
-
     @SneakyThrows
     public String validateFirstName(String firstName) {
         if (!StringUtils.isAlpha(firstName)) {
@@ -22,7 +21,7 @@ public class ValidatorService {
 
 
     public String validateLastName(String lastName) {
-        String[] lastNames = lastName.split("-");
+        String[] lastNames = lastName.split("");
         for (int i = 0; i < lastNames.length; i++) {
             if (!StringUtils.isAlpha(lastNames[i])) {
                 throw new IncorrectLastNameExeption();
