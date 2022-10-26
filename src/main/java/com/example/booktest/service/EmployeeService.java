@@ -19,7 +19,7 @@ public class EmployeeService {
     private final ValidatorService validatorService;
 
     private String getKey(String firstName, String lastName) {
-        return firstName + "|" + lastName;
+        return firstName + " " + lastName;
     }
 
 
@@ -43,7 +43,7 @@ public class EmployeeService {
             throw new EmployeeAlredyAddedException();
         }
 
-        if (employees.size() <= LIMIT) {
+        if (employees.size() < LIMIT) {
 
             employees.put(key, employee);
             return employee;
@@ -54,8 +54,9 @@ public class EmployeeService {
     public Employee remove(String firstName,
                            String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employees.containsKey(getKey(firstName, lastName))) {
-            return employee;
+        String key = getKey(firstName, lastName);
+        if (employees.containsKey(key)) {
+            return employees.remove(key);
         }
         throw new EmployeeNotFoundException();
     }
@@ -63,8 +64,9 @@ public class EmployeeService {
     public Employee find(String firstName,
                          String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employees.containsKey(getKey(firstName, lastName))) {
-            return employee;
+        String key = getKey(firstName, lastName);
+        if (employees.containsKey(key)) {
+            return employees.get(key);
         }
         throw new EmployeeNotFoundException();
     }

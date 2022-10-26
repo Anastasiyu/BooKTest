@@ -41,7 +41,8 @@ public class EmployeeServiceTest {
                     .isNotEmpty()
                     .hasSize(sizeBefore +1)
                     .contains(employee);
-           // assertThat(employeeService.find(employee.getFirstName(), employee.getLastName())).isEqualTo(employee);
+            Employee actual = employeeService.find(employee.getFirstName(), employee.getLastName());
+            assertThat(actual).isEqualTo(employee);
         return employee;
     }
 
@@ -68,9 +69,9 @@ public class EmployeeServiceTest {
     }
 
     @Test
-   public  void  addNegstive3Test() {                        // проверяет что еще не есть место в списке (10)
+   public  void  addNegstive3Test() {                        // проверяет что еще есть место в списке (10)
         for (int i = 0; i < 10; i++) {
-            addOneWithChek("FirstName" + (char) ('a' + i), "LastName" + (char) ('a' + i));
+            addOneWithChek("Firstname" + (char) ('a' + i), "Lastname" + (char) ('a' + i));
 
         }
         assertThatExceptionOfType(EmployeeStorageIsFullException.class)
